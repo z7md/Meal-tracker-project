@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
 var SubSchema = new mongoose.Schema({
+    
+    userId: {
+        type:String ,
+        required:true
+    },
+
     subname: {
         type:String ,
         required:true
@@ -37,5 +43,5 @@ var SubSchema = new mongoose.Schema({
     }
   }, {timestamps: true});
   
-export const Sub =mongoose.model('Sub', SubSchema);
+export const Sub=mongoose.model('Sub', SubSchema);
   

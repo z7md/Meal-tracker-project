@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { Sub } from "./models/subModel.js";
 import subRouter from "./routes/subRoute.js";
 import cors from "cors";
+import userRouter from "./routes/userRoute.js"
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/subs", subRouter);
+app.use("/",userRouter)
 
 mongoose
   .connect(mongoDBURL)

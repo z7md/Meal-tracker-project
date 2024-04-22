@@ -15,8 +15,8 @@ export default function Header(sub) {
             to={`/subs/edit/${sub.sub}`}
             className="flex-1 hover:opacity-70 hover:bg-gray-200"
           >
-            <div className="flex flex-col gap-y-2 border-2 rounded-xl items-center justify-center w-[300px]">
-              <span className="text-2xl">اضافة استلام وجبة</span>
+            <div className="flex flex-col gap-y-2 border-2 rounded-xl items-center justify-center w-[200px] bg-white mt-2">
+              <span className="text-2xl text-black">اضافة استلام وجبة</span>
 
               <AiOutlineEdit className="text-2xl text-yellow-600 size-[100px]" />
             </div>
@@ -25,8 +25,8 @@ export default function Header(sub) {
             to={`/subs/delete/${sub.sub}`}
             className="flex-1 hover:opacity-70 hover:bg-gray-200 "
           >
-            <div className="flex flex-col gap-y-2 border-2 rounded-xl items-center justify-center w-[300px]">
-              <span className="text-2xl">حذف المستخدم</span>
+            <div className="flex flex-col gap-y-2 border-2 rounded-xl items-center justify-center w-[200px] bg-white mt-2">
+              <span className="text-2xl text-black">حذف المستخدم</span>
 
               <MdOutlineDelete className="text-2xl text-red-600 size-[100px]" />
             </div>

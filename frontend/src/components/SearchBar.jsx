@@ -1,13 +1,18 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdOutlineAddBox } from "react-icons/md";
+import {Context} from "../pages/Home"
 
-export default function SearchBar({ setResult }) {
+
+export default function SearchBar(props) {
+
+  const user = useContext(Context)
+  console.log(user);
   const [input, setInput] = useState("");
   const fetchData = (value) => {
-    fetch("http://localhost:5555/subs")
+    fetch(`http://localhost:5555/${user}`)
       .then((response) => response.json())
       .then((json) => {
         const result = json.data.filter((user) => {
@@ -18,7 +23,7 @@ export default function SearchBar({ setResult }) {
               user.phone.includes(value)
           );
         });
-        setResult(result);
+        props.setResult(result);
       });
   };
   const handleChange = (value) => {
@@ -38,7 +43,8 @@ export default function SearchBar({ setResult }) {
           />
         </div>
       </div>
-      <Link to="subs/create">
+      
+      <Link to={`/subs/create/${user}`}>
         <MdOutlineAddBox className="text-sky-800 text-4xl" />
       </Link>
     </div>

@@ -5,10 +5,13 @@ import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import SearchBar from "../components/SearchBar";
-import { useNavigate, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
+
+export const Context = React.createContext();
 
 export default function Home() {
   const location = useLocation();
+   const user = location.state.id;
   function isExperied(sub) {
     let date = sub.expirationDate;
     var now = moment().format("L");
@@ -21,7 +24,7 @@ export default function Home() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5555/subs")
+      .get(`http://localhost:5555/${user}`)
       .then((response) => {
         setResult(response.data.data);
         setLoading(false);
@@ -33,8 +36,9 @@ export default function Home() {
   }, []);
 
   return (
+    <Context.Provider value={user}>
     <div className="p-4 ">
-      <SearchBar setResult={setResult} />
+      <SearchBar setResult={setResult} userId={user} />
       <h1 className="text-3xl my-8 flex justify-center w-full">
         قائمة المشتركين
       </h1>
@@ -42,7 +46,7 @@ export default function Home() {
         {loading ? (
           <Spinner />
         ) : (
-          <div className="flex flex-col justify-around items-center w-full">
+          <div  className="flex flex-col justify-around items-center w-full">
             <div className="flex w-full justify-around text-2xl">
               <span className="border border-slate-700 rounded-md text-center w-[275px] p-2">
                 No
@@ -63,7 +67,6 @@ export default function Home() {
                 Protein
               </span>
             </div>
-
             {result.map((sub, index) => (
               <Link
                 key={sub.key}
@@ -101,20 +104,7 @@ export default function Home() {
         )}
       </div>
     </div>
+    </Context.Provider>
   );
 }
-{
-  /* <td className="border border-slate-700 rounded-md text-center">
-<div className="flex justify-center">
-  <Link to={`/subs/details/${sub._id}`} className="flex-1 hover:opacity-70 hover:bg-gray-200">
-    <BsInfoCircle className="text-2xl text-green-800" />
-  </Link>
-  <Link to={`/subs/edit/${sub._id}`} className="flex-1 hover:opacity-70 hover:bg-gray-200">
-    <AiOutlineEdit className="text-2xl text-yellow-600" />
-  </Link>
-  <Link to={`/subs/delete/${sub._id}`} className="flex-1 hover:opacity-70 hover:bg-gray-200">
-    <MdOutlineDelete className="text-2xl text-red-600" />
-  </Link>
-</div>
-</td> */
-}
+

@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 
 const EditSub = () => {
+  const [userId, setuserId] = useState("");
   const [subname, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [meals, setmeals] = useState("");
@@ -16,13 +16,14 @@ const EditSub = () => {
   const [loading, setLoading] = useState(false);
   const [PastmealsLeft, setPastmealsLeft] = useState("");
   const [PastmealTime, setPastmealTime] = useState("");
-  const navigate = useNavigate();
+  const location = useNavigate();
   const { id } = useParams();
   useEffect(() => {
     setLoading(true);
     axios
       .get(`http://localhost:5555/subs/${id}`)
       .then((response) => {
+        setuserId(response.data.userId);
         setName(response.data.subname);
         setPhone(response.data.phone);
         setCarb(response.data.carb);
@@ -61,7 +62,7 @@ const EditSub = () => {
       .put(`http://localhost:5555/subs/${id}`, data)
       .then(() => {
         setLoading(false);
-        navigate("/");
+        location("/home",{state:{id:userId}});
       })
       .catch((error) => {
         setLoading(false);
@@ -71,7 +72,6 @@ const EditSub = () => {
   };
   return (
     <div className="p-4">
-      <BackButton />
       <h1 className="text-3xl my-4">Edit Sub</h1>
       {loading ? <Spinner /> : ""}
       <div className="flex flex-col justify-center items-center">

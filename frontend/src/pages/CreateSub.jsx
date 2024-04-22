@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import BackButton from "../components/BackButton";
+import React, { useState,useContext } from "react";
 import Spinner from "../components/Spinner";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const CreateSub = () => {
+export default function CreateSub(){
+  const { id } = useParams();
+  console.log(id)
   const [subname, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [meals, setmeals] = useState("");
@@ -13,14 +14,17 @@ const CreateSub = () => {
   const [protein, setProtein] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  let userId=id;
   const handleSaveSub = () => {
     const data = {
+      userId,
       subname,
       phone,
       meals,
       carb,
       protein,
     };
+    console.log(data)
     if (data.carb == 0 || data.protein == 0 || data.meals == 0) {
       // alert("Please Choose selection for meals, carb and protein ");\
       let warning = document.getElementById("warning1");
@@ -31,7 +35,7 @@ const CreateSub = () => {
         .post("http://localhost:5555/subs", data)
         .then(() => {
           setLoading(false);
-          navigate("/");
+          navigate("/home",{state:{id:id}})
         })
         .catch((error) => {
           setLoading(false);
@@ -42,7 +46,6 @@ const CreateSub = () => {
   };
   return (
     <div className="p-4">
-      <BackButton />
       <h1 className="text-3xl my-4">Create Sub</h1>
       {loading ? <Spinner /> : ""}
       <div className="justify-center items-center text-red-900 text-3xl mb-9 hidden flex" id="warning1">
@@ -109,4 +112,3 @@ const CreateSub = () => {
   );
 };
 
-export default CreateSub;
