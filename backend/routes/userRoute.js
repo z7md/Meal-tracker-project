@@ -11,7 +11,6 @@ router.get("/:id", async (request, response) => {
       const subs = await Sub.find({
         userId:id
       });
-      console.log(subs)
       return response.status(200).json({
         count: subs.length,
         data: subs,
@@ -22,18 +21,34 @@ router.get("/:id", async (request, response) => {
     }
   });
 
+
+  router.get("/user/:id", async (request, response) => {
+    const { id } = request.params;
+    try {
+      const user = await User.findById(id)
+      return response.status(200).json({
+        data:user
+      });
+    } catch (error) {
+      console.log(error.message);
+      response.status(500).send({ message: error.message });
+    }
+  });
+
+
+
+
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
-  console.log(password);
-
+    let check1=null;
     let check = await User.findOne({ email: email });
-    if(check.password==password){
-      
+    if(check==null || check.password!=password){
+       check1=false;
     }else{
-      check=false
+       check1=true;
     }
     console.log(check.password);
-    if (check) {
+    if (check1) {
       res.json(check);
     } else {
       res.json("notexist");
@@ -42,23 +57,22 @@ router.post("/", async (req, res) => {
 
 
 router.post("/signup", async (req, res) => {
-  console.log(req.body);
   let email = req.body.email;
   let password = req.body.password;
-  let username=req.body.username;
-
   const newUser = {
     email: email,
-    username:username,
     password: password,
+    totalMeals: 0,
+    mealTime: new Array(),
   };
-
+console.log(newUser);
   try {
     const check = await User.findOne({ email: email });
     if (check) {
       res.json(true);
     } else {
-       const x = await User.insertMany([newUser])
+       const x = await User.create(newUser);
+       console.log(x);
         res.json(x);
     }
   } catch (e) {

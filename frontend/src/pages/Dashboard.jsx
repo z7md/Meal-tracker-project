@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import Sidebar from '../components/Sidebar';
 import { AiOutlineLogout } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 export default function Dashboard() {
     let nave=useNavigate();
     let user = JSON.parse(localStorage.getItem("user"));
-    function handleLogOut(){
-        localStorage.removeItem("user");
-        nave("/");
-      }
+
+
+    const [result, setResult] = useState([]);
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+      setLoading(true);
+      axios
+        .get(`http://localhost:5555/user/${user._id}`)
+        .then((response) => {
+           setResult(response.data.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
+    }, []);
+
   return (
     <div>
     <Sidebar />

@@ -1,6 +1,7 @@
 import express from "express";
 import { Sub } from "../models/subModel.js";
 import moment from "moment";
+import { User } from "../models/userModel.js";
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.post("/", async (request, response) => {
       });
     }
     const newSub = {
-      userId:request.body.userId,
+      userId: request.body.userId,
       subname: request.body.subname,
       phone: request.body.phone,
       meals: request.body.meals,
@@ -26,7 +27,7 @@ router.post("/", async (request, response) => {
       protein: request.body.protein,
       mealsLeft: request.body.meals * 26,
       mealTime: new Array(),
-      expirationDate: moment().add(60, 'days').calendar(),
+      expirationDate: moment().add(60, "days").calendar(),
     };
     const sub = await Sub.create(newSub);
     return response.status(201).send(sub);
@@ -35,8 +36,6 @@ router.post("/", async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
-
-
 
 router.get("/:id", async (request, response) => {
   try {
@@ -52,17 +51,34 @@ router.get("/:id", async (request, response) => {
 router.put("/:id", async (request, response) => {
   try {
     if (
-      !request.body.meals ||
-      !request.body.carb ||
-      !request.body.protein
+      !request.body.mealsLeft ||
+      !request.body.mealTime ||
+      !request.body.meals1
     ) {
       return response.status(400).send({
         message: "Please send all information",
       });
     }
     const { id } = request.params;
-    const user1=request.body.userId;
-    console.log(user1);
+    // Adding meals to user
+    const user = await User.findById(request.body.userId);
+    user.totalMeals += request.body.meals1;
+    console.log(user.mealTime.length);
+     if(user.mealTime[user.mealTime.length-1].time==moment().format('l')){
+      user.mealTime[user.mealTime.length-1].meal += request.body.meals1;
+      }
+      else{
+        user.mealTime.push({
+          time:moment().format('l'),
+          meal:request.body.meals1
+        });
+      }
+    
+     const updatedUser = await User.findByIdAndUpdate(request.body.userId,user);
+     console.log(updatedUser);
+     console.log("Here");
+
+
     const result = await Sub.findByIdAndUpdate(id, request.body);
     if (!result) {
       return response.status(404).json({ message: "Sub not found" });

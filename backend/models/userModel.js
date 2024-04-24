@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 
 var UserSchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
-      required: true,
-    },
     email: {
       type: String,
       required: true,
@@ -13,6 +9,14 @@ var UserSchema = new mongoose.Schema(
     password: {
       type: Number,
       required: true,
+    },
+    totalMeals:{
+      type:Number,
+      required:true
+      },
+      mealTime:{
+        type:Array,
+        required:true
     },
   },
   { timestamps: true }

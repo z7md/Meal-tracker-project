@@ -7,7 +7,6 @@ export default function SignUp() {
   const history = useNavigate();
 
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   async function submit(e) {
@@ -15,14 +14,14 @@ export default function SignUp() {
     await axios.
     post("http://localhost:5555/signup", {
          email,
-         username,
          password,
        }).then((res)=>{
         console.log(res.data.key)
         if(res.data===true){
         alert("User already exists");
-        }else if(res.data){
-        history("/home", { state: { id: res.data} });
+        }else if(res.data)
+        localStorage.setItem("user", JSON.stringify(res.data));{
+        history("/home");
         }
     }).catch((e)=>{
         alert("erorr")
@@ -36,13 +35,6 @@ export default function SignUp() {
       <h1>Signup</h1>
 
       <form action="POST">
-      <input
-          type="text"
-          onChange={(e) => {
-            setUsername(e.target.value.toLowerCase());
-          }}
-          placeholder="Username"
-        />
         <input
           type="email"
           onChange={(e) => {

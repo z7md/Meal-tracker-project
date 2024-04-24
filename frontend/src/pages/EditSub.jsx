@@ -50,14 +50,12 @@ const EditSub = () =>
     });
     const data = {
       userId,
-      subname,
-      phone,
-      meals,
-      carb,
-      protein,
+      meals1:Number(meals1),
       mealsLeft,
       mealTime,
     };
+    
+    console.log(typeof(Number(meals1)));
     // alert("Please Choose selection for meals, carb and protein ");\
     setLoading(true);
     axios
