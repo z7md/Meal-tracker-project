@@ -29,8 +29,25 @@ export default function Dashboard() {
   return (
     <div>
     <Sidebar />
- 
+    
+<div className='w-full flex'>
 
+<Link to={"/home"} className='size-[300px] rounded-lg border-[2px] border-black ml-[300px]'>
+<div className='flex gap-6'>
+<span>المشتركين الحاليين</span>
+<span>13</span>
+
+</div>
+</Link>
+<Link to={"/meals"} className='size-[300px] rounded-lg border-[2px] border-black ml-[300px]'>
+<div className='flex gap-6'>
+<span>المشتركين الحاليين</span>
+<span>13</span>
+
+</div>
+</Link>
+
+</div>
         </div>
   )
 }

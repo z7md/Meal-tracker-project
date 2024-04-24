@@ -10,6 +10,7 @@ import DeleteSub from "./pages/DeleteSub";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
+import UserMeals from "./pages/UserMeals";
 
 
 
@@ -25,6 +26,7 @@ const App = () => {
       <Route path="/subs/details/:id" element={<ShowSub />} />
        <Route path="/subs/edit/:id" element={<EditSub />} />
        <Route path="/subs/delete/:id" element={<DeleteSub />} />
+       <Route path="/meals" element={<UserMeals/>} />
     </Routes>
   );
 };
