@@ -52,8 +52,6 @@ router.get("/:id", async (request, response) => {
 router.put("/:id", async (request, response) => {
   try {
     if (
-      !request.body.subname ||
-      !request.body.phone ||
       !request.body.meals ||
       !request.body.carb ||
       !request.body.protein
@@ -63,6 +61,8 @@ router.put("/:id", async (request, response) => {
       });
     }
     const { id } = request.params;
+    const user1=request.body.userId;
+    console.log(user1);
     const result = await Sub.findByIdAndUpdate(id, request.body);
     if (!result) {
       return response.status(404).json({ message: "Sub not found" });
@@ -79,7 +79,6 @@ router.delete("/:id", async (request, response) => {
   try {
     const { id } = request.params;
     const result = await Sub.findByIdAndDelete(id);
-    console.log(result)
     if (!result) {
       return response.status(404).send({ message: "Sub not found" });
     } else {

@@ -24,10 +24,15 @@ router.get("/:id", async (request, response) => {
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
+  console.log(password);
 
-
-    const check = await User.findOne({ email: email });
-    console.log(check);
+    let check = await User.findOne({ email: email });
+    if(check.password==password){
+      
+    }else{
+      check=false
+    }
+    console.log(check.password);
     if (check) {
       res.json(check);
     } else {
@@ -40,9 +45,11 @@ router.post("/signup", async (req, res) => {
   console.log(req.body);
   let email = req.body.email;
   let password = req.body.password;
+  let username=req.body.username;
 
   const newUser = {
     email: email,
+    username:username,
     password: password,
   };
 

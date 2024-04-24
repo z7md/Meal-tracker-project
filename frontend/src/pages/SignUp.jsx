@@ -7,6 +7,7 @@ export default function SignUp() {
   const history = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   async function submit(e) {
@@ -14,6 +15,7 @@ export default function SignUp() {
     await axios.
     post("http://localhost:5555/signup", {
          email,
+         username,
          password,
        }).then((res)=>{
         console.log(res.data.key)
@@ -34,6 +36,13 @@ export default function SignUp() {
       <h1>Signup</h1>
 
       <form action="POST">
+      <input
+          type="text"
+          onChange={(e) => {
+            setUsername(e.target.value.toLowerCase());
+          }}
+          placeholder="Username"
+        />
         <input
           type="email"
           onChange={(e) => {

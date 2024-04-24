@@ -9,14 +9,17 @@ import EditSub from "./pages/EditSub";
 import DeleteSub from "./pages/DeleteSub";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
 
 
 
 const App = () => {
+  let isLogged = localStorage.getItem("user");
   return (
      <Routes>
-          <Route path='/' element={<Login />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/' element={isLogged? <Home/>:<Login />} />
+          <Route path='/dashboard' element={<Dashboard/>} />
+          <Route path='/home' element={<Home/>} />
           <Route path='/signup' element={<SignUp />} />
        <Route path="/subs/create/:id" element={<CreateSub />} />
       <Route path="/subs/details/:id" element={<ShowSub />} />

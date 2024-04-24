@@ -5,9 +5,11 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 
-const EditSub = () => {
-  const [userId, setuserId] = useState("");
-  const [subname, setName] = useState("");
+const EditSub = () => 
+{
+  let user = JSON.parse(localStorage.getItem("user"));
+  const userId=user._id;
+    const [subname, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [meals, setmeals] = useState("");
   const [meals1, setmeals1] = useState("");
@@ -23,7 +25,6 @@ const EditSub = () => {
     axios
       .get(`http://localhost:5555/subs/${id}`)
       .then((response) => {
-        setuserId(response.data.userId);
         setName(response.data.subname);
         setPhone(response.data.phone);
         setCarb(response.data.carb);
@@ -48,6 +49,7 @@ const EditSub = () => {
       time: moment().format("MMMM Do YYYY, h:mm:ss a"),
     });
     const data = {
+      userId,
       subname,
       phone,
       meals,
@@ -62,7 +64,7 @@ const EditSub = () => {
       .put(`http://localhost:5555/subs/${id}`, data)
       .then(() => {
         setLoading(false);
-        location("/home",{state:{id:userId}});
+        location("/home");
       })
       .catch((error) => {
         setLoading(false);

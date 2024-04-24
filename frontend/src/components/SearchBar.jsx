@@ -1,15 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState,useContext } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { MdOutlineAddBox } from "react-icons/md";
-import {Context} from "../pages/Home"
+import { AiOutlineLogout } from "react-icons/ai";
 
 
 export default function SearchBar(props) {
-
-  const user = useContext(Context)
-  console.log(user);
+  let nave=useNavigate();
+  let user = JSON.parse(localStorage.getItem("user"));
+  user=user._id;
   const [input, setInput] = useState("");
   const fetchData = (value) => {
     fetch(`http://localhost:5555/${user}`)
@@ -30,6 +30,10 @@ export default function SearchBar(props) {
     setInput(value);
     fetchData(value);
   };
+  function handleLogOut(){
+    localStorage.removeItem("user");
+    nave("/");
+  }
   return (
     <div className="flex">
       <div className="w-[40%] m-auto flex flex-col items-center min-w-[200px]">
@@ -43,10 +47,13 @@ export default function SearchBar(props) {
           />
         </div>
       </div>
+      <div className="flex gap-6">
       
       <Link to={`/subs/create/${user}`}>
         <MdOutlineAddBox className="text-sky-800 text-4xl" />
       </Link>
+      <button onClick={handleLogOut}><AiOutlineLogout className="text-red-500 text-4xl mr-5" /></button>
+    </div>
     </div>
   );
 }
