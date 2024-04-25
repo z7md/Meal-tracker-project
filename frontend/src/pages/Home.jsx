@@ -5,6 +5,7 @@ import Spinner from "../components/Spinner";
 import { Link,useNavigate } from "react-router-dom";
 import moment from "moment";
 import SearchBar from "../components/SearchBar";
+import Sidebar from '../components/Sidebar';
 
 export const Context = React.createContext();
 
@@ -43,6 +44,7 @@ export default function Home() {
 
   return (
     <Context.Provider value={user._id}>
+      <Sidebar/>
       <div className="p-4 ">
         <SearchBar setResult={setResult} userId={user._id} />
         <h1 className="text-3xl my-8 flex justify-center w-full">
