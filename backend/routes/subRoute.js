@@ -63,8 +63,13 @@ router.put("/:id", async (request, response) => {
     // Adding meals to user
     const user = await User.findById(request.body.userId);
     user.totalMeals += request.body.meals1;
-    console.log(user.mealTime.length);
-     if(user.mealTime[user.mealTime.length-1].time==moment().format('l')){
+    if(user.mealTime.length==0){
+      user.mealTime.push({
+        time:moment().format('l'),
+        meal:request.body.meals1
+      });
+    }
+    else if(user.mealTime[user.mealTime.length-1].time==moment().format('l')){
       user.mealTime[user.mealTime.length-1].meal += request.body.meals1;
       }
       else{
