@@ -11,11 +11,13 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import UserMeals from "./pages/UserMeals";
+import Logout from "./pages/Logout";
 
 
 
 const App = () => {
-  let isLogged = localStorage.getItem("user");
+  console.log(localStorage.getItem("user"))
+  let isLogged = localStorage.getItem("user")==null?false : true;
   return (
      <Routes>
           <Route path='/' element={isLogged? <Home/>:<Login />} />
@@ -27,6 +29,7 @@ const App = () => {
        <Route path="/subs/edit/:id" element={<EditSub />} />
        <Route path="/subs/delete/:id" element={<DeleteSub />} />
        <Route path="/meals" element={<UserMeals/>} />
+       <Route path="/logout" element={<Logout/>} />
     </Routes>
   );
 };

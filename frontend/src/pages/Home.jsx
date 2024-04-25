@@ -2,21 +2,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import SearchBar from "../components/SearchBar";
+import Sidebar from "../components/Sidebar";
 
 export const Context = React.createContext();
 
 export default function Home() {
-  let navigate=useNavigate();
   let user = JSON.parse(localStorage.getItem("user"));
   console.log(user);
-    if (user==null){
-      console.log("Hello")
-     navigate("/")   
-    }
-
 
   function isExperied(sub) {
     let date = sub.expirationDate;
@@ -42,9 +37,10 @@ export default function Home() {
   }, []);
 
   return (
-    <Context.Provider value={user._id}>
+    <>
+      <Sidebar />
       <div className="p-4 ">
-        <SearchBar setResult={setResult} userId={user._id} />
+        <SearchBar setResult={setResult} />
         <h1 className="text-3xl my-8 flex justify-center w-full">
           قائمة المشتركين
         </h1>
@@ -110,6 +106,6 @@ export default function Home() {
           )}
         </div>
       </div>
-    </Context.Provider>
+    </>
   );
 }
