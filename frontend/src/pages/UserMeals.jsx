@@ -40,10 +40,10 @@ export default function UserMeals() {
             </tr>
           </thead>
           <tbody>
-            {result.mealTime?.map((meal) => (
-              <tr key={meal.key} className="text-center">
+            {result.mealTime?.map((meal,key) => (
+              <tr key={key} className="text-center">
                 <td
-                  key={meal.key}
+                  key={key}
                   className="border border-black rounded-md"
                 >
                   {meal.time}

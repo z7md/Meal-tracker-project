@@ -1,6 +1,7 @@
 import express from "express";
 import { User } from "../models/userModel.js";
 import { Sub } from "../models/subModel.js";
+import moment from "moment";
 
 const router = express.Router();
 
@@ -63,9 +64,9 @@ router.post("/signup", async (req, res) => {
     email: email,
     password: password,
     totalMeals: 0,
-    mealTime: new Array(),
-  };
-console.log(newUser);
+    mealTime: new Array()
+  }
+
   try {
     const check = await User.findOne({ email: email });
     if (check) {
