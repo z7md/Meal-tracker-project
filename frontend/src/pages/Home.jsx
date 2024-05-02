@@ -5,8 +5,10 @@ import Spinner from "../components/Spinner";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import SearchBar from "../components/SearchBar";
+import Sidebar from "../components/Sidebar";
 
 export const Context = React.createContext();
+const catagories = ["No","Phone Number","Name","Meals","Carb","Protein"]
 
 export default function Home() {
   let user = JSON.parse(localStorage.getItem("user"));
@@ -34,10 +36,11 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
-
+  console.log(result)
   return (
-    <Context.Provider value={user._id}>
-      <div className="p-4 ">
+    <div className="flex">
+    <Sidebar/>
+      <div className="p-4 right-0 ml-[250px]">
         <SearchBar setResult={setResult} />
         <h1 className="text-3xl my-8 flex justify-center w-full">
           قائمة المشتركين
@@ -47,25 +50,12 @@ export default function Home() {
             <Spinner />
           ) : (
             <div className="flex flex-col justify-around items-center w-full">
-              <div className="flex w-full justify-around text-2xl">
-                <span className="border border-slate-700 rounded-md text-center w-[275px] p-2">
-                  No
+              <div className="flex w-full justify-around text-2xl bg-black">
+              {catagories.forEach((cat)=>{
+                <span className="border border-slate-700 rounded-md text-center text-black w-[225px] p-2">
+                  {cat}
                 </span>
-                <span className="border border-slate-700 rounded-md text-center w-[275px] p-2">
-                  Phone Number
-                </span>
-                <span className="border border-slate-700 rounded-md text-center w-[275px] p-2">
-                  Name
-                </span>
-                <span className="border border-slate-700 rounded-md text-center w-[275px] p-2">
-                  Meals
-                </span>
-                <span className="border border-slate-700 rounded-md text-center w-[275px] p-2">
-                  Carb
-                </span>
-                <span className="border border-slate-700 rounded-md text-center w-[275px] p-2">
-                  Protein
-                </span>
+              })}
               </div>
               {result.map((sub, index) => (
                 <Link
@@ -104,6 +94,7 @@ export default function Home() {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
+

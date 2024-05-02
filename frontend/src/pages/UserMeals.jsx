@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from '../components/Sidebar';
 import axios from "axios";
+import Spinner from "../components/Spinner";
 
 export default function UserMeals() {
     let user = JSON.parse(localStorage.getItem("user"));
-
 
     const [result, setResult] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export default function UserMeals() {
         .get(`http://localhost:5555/user/${user._id}`)
         .then((response) => {
            setResult(response.data.data);
-           console.log(result)
+           console.log(response.data.data)
           setLoading(false);
         })
         .catch((error) => {
@@ -22,15 +22,21 @@ export default function UserMeals() {
           setLoading(false);
         });
     }, []);
-
   return (
-    <div>
+    <div className="flex">
         <Sidebar/>
+        <div className="w-full">
         <div className="flex flex-col  reounded-xl justify-center p-4 w-[full] ml-[250px]">
-        <span className="text-xl mr-4 text-white flex justify-center">
-          Meals time
+        { loading ? (
+
+         <Spinner/>
+          )  
+        
+      : ( <div>
+      <span className="text-4xl mr-4 text-black flex justify-center p-6">
+          اوقات الوجبات
         </span>
-        <table className="w-full">
+        <table className="w-full text-2xl">
           <thead>
             <tr>
               <th className="border border-black rounded-md">التاريخ</th>
@@ -46,6 +52,7 @@ export default function UserMeals() {
                   key={key}
                   className="border border-black rounded-md"
                 >
+                {console.log(meal.time)}
                   {meal.time}
                 </td>
                 <td
@@ -53,12 +60,16 @@ export default function UserMeals() {
                   className="border border-black rounded-md"
                 >
                   {meal.meal}
+                  
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        </div>
+      )}
       </div>
+    </div>
     </div>
   )
 }

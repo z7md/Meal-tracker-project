@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import moment from "moment";
 import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
 const ShowSub = () => {
   let currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
@@ -28,7 +29,9 @@ const ShowSub = () => {
   }, []);
   let arr = sub.mealTime;
   return (
-    <div className="p-4 justify-center items-center w-full flex flex-col bg-gray-200 h-screen  text-gray-500 ">
+  <div className="flex">
+  <Sidebar/>
+    <div className="p-4 justify-center items-center w-full flex flex-col bg-white h-screen  text-black ">
       
       <div className="flex w-full justify-center items-center"></div>
       <h1 className="text-[32px] my-4">Subscriper Profile</h1>
@@ -36,7 +39,7 @@ const ShowSub = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col w-[600px] bg-white justify-center rounded-lg text-2xl">
+        <div className="flex flex-col w-[600px] bg-[#293846] justify-center rounded-lg text-2xl text-white">
           <div className="flex p-4  rounded-full">
             <span>Name :  { }</span>
             <span>{sub.subname}</span>
@@ -62,7 +65,7 @@ const ShowSub = () => {
             <span>{sub.mealsLeft}</span>
           </div>
           <div className="flex p-4">
-            <span>Protein : {}</span>
+            <span>Expires :</span>
             <span>{sub.expirationDate}</span>
           </div>
           
@@ -70,30 +73,30 @@ const ShowSub = () => {
       )}
       <Header sub={id}/>
       <div className="flex flex-col  reounded-xl justify-center p-4 w-[600px]">
-        <span className="text-xl mr-4 text-white flex justify-center">
+        <span className="text-4xl mr-4 text-white flex justify-center">
           Meals time
         </span>
         <table className="w-full">
           <thead>
             <tr>
-              <th className="border border-white rounded-md">التاريخ</th>
-              <th className="border border-white rounded-md">
+              <th className="border border-black rounded-md">التاريخ</th>
+              <th className="border border-black rounded-md">
                 عدد الوجبات
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-3xl">
             {arr?.map((meal) => (
               <tr key={meal.key} className="text-center">
                 <td
                   key={meal.key}
-                  className="border border-white rounded-md"
+                  className="border border-black rounded-md"
                 >
                   {meal.time}
                 </td>
                 <td
                   key={meal.key}
-                  className="border border-white rounded-md"
+                  className="border border-black rounded-md"
                 >
                   {meal.meal}
                 </td>
@@ -102,6 +105,7 @@ const ShowSub = () => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 };

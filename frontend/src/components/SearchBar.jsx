@@ -35,8 +35,8 @@ export default function SearchBar(props) {
     nave("/");
   }
   return (
-    <div className="flex">
-      <div className="w-[40%] m-auto flex flex-col items-center min-w-[200px]">
+    <div className="flex w-full">
+      <div className="w-[40%] m-auto flex flex-col items-center min-w-[200px] ">
         <div className="bg-white w-full rounded-[10px] h-[2.5rem] flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] p-2">
           <FaSearch className="" />
           <input
