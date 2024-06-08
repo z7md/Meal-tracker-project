@@ -12,8 +12,7 @@ const catagories = ["No", "Phone Number", "Name", "Meals", "Carb", "Protein"];
 
 export default function Home() {
   let user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
-
+  
   function isExperied(sub) {
     let date = sub.expirationDate;
     var now = moment().format("L");
@@ -36,7 +35,6 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
-  console.log(result);
   return (
     <div className="flex">
       <Sidebar />

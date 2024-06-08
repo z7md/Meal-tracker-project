@@ -16,7 +16,6 @@ export default function SignUp() {
          email,
          password,
        }).then((res)=>{
-        console.log(res.data.key)
         if(res.data===true){
         alert("User already exists");
         }else if(res.data)
@@ -60,26 +59,3 @@ export default function SignUp() {
     </div>
   );
 }
-
-// try {
-//     await axios
-//       .post("http://localhost:5555/signup", {
-//         email,
-//         password,
-//       })
-//       .then((res) => {
-//           console.log(email)
-//           console.log(password)
-//         if (res.data == "exist") {
-//           alert("User already exists");
-//         } else if (res) {
-//           history("/home", { state: { id: res.data.key } });
-//         }
-//       })
-//       .catch((e) => {
-//         alert("wrong details 11");
-//         console.log(e);
-//       });
-//   } catch (e) {
-//     console.log(e);
-//   }

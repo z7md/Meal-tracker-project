@@ -6,7 +6,6 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { MdOutlineDelete } from "react-icons/md";
 
 export default function Header(sub) {
-  console.log(sub.sub);
   return (
     <div className="w-full">
       <div className="flex  w-full items-center justify-center ">

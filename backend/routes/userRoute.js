@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.get("/:id", async (request, response) => {
     const { id } = request.params;
-    console.log(id)
     try {
       const subs = await Sub.find({
         userId:id
@@ -48,7 +47,6 @@ router.post("/", async (req, res) => {
     }else{
        check1=true;
     }
-    console.log(check.password);
     if (check1) {
       res.json(check);
     } else {

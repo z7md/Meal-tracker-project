@@ -9,7 +9,6 @@ import Sidebar from "../components/Sidebar";
 
 const ShowSub = () => {
   let currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
-  console.log(currentDate);
   const [sub, setSub] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
@@ -20,7 +19,6 @@ const ShowSub = () => {
       .then((response) => {
         setSub(response.data);
         setLoading(false);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

@@ -14,7 +14,6 @@ export default function UserMeals() {
         .get(`http://localhost:5555/user/${user._id}`)
         .then((response) => {
            setResult(response.data.data);
-           console.log(response.data.data)
           setLoading(false);
         })
         .catch((error) => {
@@ -52,7 +51,6 @@ export default function UserMeals() {
                   key={key}
                   className="border border-black rounded-md"
                 >
-                {console.log(meal.time)}
                   {meal.time}
                 </td>
                 <td

@@ -25,7 +25,6 @@ export default function CreateSub(){
       carb,
       protein,
     };
-    console.log(data)
     if (data.carb == 0 || data.protein == 0 || data.meals == 0 || data.phone==""||data.subname=="") {
       // alert("Please Choose selection for meals, carb and protein ");\
       let warning = document.getElementById("warning1");

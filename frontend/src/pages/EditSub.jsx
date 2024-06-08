@@ -56,7 +56,6 @@ const EditSub = () =>
       mealTime,
     };
     
-    console.log(typeof(Number(meals1)));
     // alert("Please Choose selection for meals, carb and protein ");\
     setLoading(true);
     axios

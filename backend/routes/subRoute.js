@@ -80,8 +80,6 @@ router.put("/:id", async (request, response) => {
       }
     
      const updatedUser = await User.findByIdAndUpdate(request.body.userId,user);
-     console.log(updatedUser);
-     console.log("Here");
 
 
     const result = await Sub.findByIdAndUpdate(id, request.body);
