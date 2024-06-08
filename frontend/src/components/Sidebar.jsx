@@ -34,6 +34,7 @@ export default function Sidebar() {
         }}
         return (
             <li  className={`w-full h-[50px]  flex text-white justify-center items-center hover:cursor-pointer hover:bg-[#293846] ${x}`}   key={key} onClick={()=>{window.location.pathname = val.link}}  >
+              {console.log(x)}
               <div className="flex-[30%] grid place-items-center">{val.icon}</div>
               <div className="flex-[70%]">{val.title}</div>
             </li>
