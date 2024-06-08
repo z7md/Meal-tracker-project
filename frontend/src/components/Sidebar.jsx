@@ -23,19 +23,25 @@ const SidebarData=[
 ]
 export default function Sidebar() {
   let x=""
+  let y=""
   return (
-    <div className='h-screen w-[250px] bg-[#2F4050] fixed left-0'>
-      <ul className="w-[100%] h-auto list-none">
+    <div className='min-h-screen w-[250px] bg-[#2F4050] min-w-[150px] fixed max-sm:w-[150px] max-md:w-[200px]'>
+      <ul className="w-full h-auto list-none">
       {SidebarData.map((val,key)=>{
         {if(window.location.pathname == val.link){
            x="bg-[#273039]"
         }else{
           x=null
         }}
+        {if(val.title=="Logout"){
+           y="bottom-0"
+        }else{
+          y=null
+        }}
         return (
-            <li  className={`w-full h-[50px]  flex text-white justify-center items-center hover:cursor-pointer hover:bg-[#293846] ${x}`}   key={key} onClick={()=>{window.location.pathname = val.link}}  >
+            <li  className={`w-full h-[80px]  flex text-white justify-center items-center hover:cursor-pointer hover:bg-[#293846] ${x} ${y}`}   key={key} onClick={()=>{window.location.pathname = val.link}}  >
               {console.log(x)}
-              <div className="flex-[30%] grid place-items-center">{val.icon}</div>
+              <div className="flex-[30%] grid place-items-center bo">{val.icon}</div>
               <div className="flex-[70%]">{val.title}</div>
             </li>
         )

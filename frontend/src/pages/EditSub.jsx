@@ -4,6 +4,7 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
+import Sidebar from "../components/Sidebar";
 
 const EditSub = () => 
 {
@@ -71,23 +72,22 @@ const EditSub = () =>
       });
   };
   return (
-    <div className="p-4">
-      <h1 className="text-3xl my-4">Edit Sub</h1>
+    <div className="">
+    <Sidebar/>
       {loading ? <Spinner /> : ""}
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="text-3xl mb-8">Enter how many meals got taken</h1>
-        <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
-          <div className="my-4">
-            <label className="text-xl mr-4 text-gray-500">Meals</label>
-            <select name="meals" onChange={(e) => setmeals1(e.target.value)}>
+      <div className="flex flex-col justify-center items-center text-xl">
+        <h1 className="text-3xl p-6">Enter how many meals got taken</h1>
+        <div className="flex flex-col border-2 border-black rounded-xl w-[600px] p-4 mx-auto">
+            <label className="text-2xl mr-4 text-gray-500 m-2">Meals</label>
+            <select name="meals" onChange={(e) => setmeals1(e.target.value)} className="border-2 border-black rounded-sm m-2">
               <option value="0">Please Select</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
             </select>
-          </div>
-          <button className="p-2 bg-sky-300 m-8" onClick={handleEditSub}>
+
+          <button className="p-2 bg-[#293846] m-8 text-white text-2xl" onClick={handleEditSub}>
             Save
           </button>
         </div>

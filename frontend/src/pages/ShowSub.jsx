@@ -31,7 +31,7 @@ const ShowSub = () => {
   return (
   <div className="flex">
   <Sidebar/>
-    <div className="p-4 justify-center items-center w-full flex flex-col bg-white h-screen  text-black ">
+    <div className="p-4 w-full flex flex-col bg-white  text-black justify-center items-center">
       
       <div className="flex w-full justify-center items-center"></div>
       <h1 className="text-[32px] my-4">Subscriper Profile</h1>
@@ -39,8 +39,9 @@ const ShowSub = () => {
       {loading ? (
         <Spinner />
       ) : (
+        
         <div className="flex flex-col w-[600px] bg-[#293846] justify-center rounded-lg text-2xl text-white">
-          <div className="flex p-4  rounded-full">
+          <div className="flex p-4  rounded-full  max-xl:items-end">
             <span>Name :  { }</span>
             <span>{sub.subname}</span>
           </div>
@@ -112,39 +113,3 @@ const ShowSub = () => {
 
 export default ShowSub;
 
-{
-  /* <div className="flex flex-col border-2 border-sky-400 reounded-xl justify-center p-4">
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Id</span>
-            <span>{sub.id}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Phone</span>
-            <span>{sub.phone}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Meals</span>
-            <span>{sub.meals}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Carb</span>
-            <span>{sub.carb}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">protein</span>
-            <span>{sub.protein}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Meals left:</span>
-            <span>{sub.mealsLeft}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Create time</span>
-            <span>{new Date(sub.createdAt).toString()}</span>
-          </div>
-          <div className="my-4">
-            <span className="text-xl mr-4 text-gray-500">Expiration Date </span>
-            <span>{sub.expirationDate}</span>
-          </div>
-        </div> */
-}

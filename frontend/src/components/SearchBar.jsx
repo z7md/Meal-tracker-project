@@ -30,14 +30,10 @@ export default function SearchBar(props) {
     setInput(value);
     fetchData(value);
   };
-  function handleLogOut(){
-    localStorage.removeItem("user");
-    nave("/");
-  }
   return (
-    <div className="flex w-full">
-      <div className="w-[40%] m-auto flex flex-col items-center min-w-[200px] ">
-        <div className="bg-white w-full rounded-[10px] h-[2.5rem] flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] p-2">
+    <div className="flex w-auto">
+      <div className="w-[70%] m-auto flex flex-col items-center max-xl:ml-[250px]">
+        <div className="bg-white w-full rounded-[10px] h-[2.5rem] flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] p-2 max-md:rounded-md">
           <FaSearch className="" />
           <input
             placeholder="Type to search..."
@@ -48,11 +44,9 @@ export default function SearchBar(props) {
         </div>
       </div>
       <div className="flex gap-6">
-      
       <Link to={`/subs/create/${user}`}>
-        <MdOutlineAddBox className="text-sky-800 text-4xl" />
+        <MdOutlineAddBox className="text-sky-800 text-[50px]" />
       </Link>
-      <button onClick={handleLogOut}><AiOutlineLogout className="text-red-500 text-4xl mr-5" /></button>
     </div>
     </div>
   );

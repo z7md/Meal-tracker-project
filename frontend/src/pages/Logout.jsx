@@ -9,6 +9,7 @@ export default function Logout() {
     useEffect(()=>{
         localStorage.removeItem("user");
         nave("/");
+        window.location.reload();
     })
 
 }

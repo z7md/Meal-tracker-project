@@ -3,6 +3,7 @@ import React, { useState,useContext } from "react";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 export default function CreateSub(){
   const { id } = useParams();
@@ -25,7 +26,7 @@ export default function CreateSub(){
       protein,
     };
     console.log(data)
-    if (data.carb == 0 || data.protein == 0 || data.meals == 0) {
+    if (data.carb == 0 || data.protein == 0 || data.meals == 0 || data.phone==""||data.subname=="") {
       // alert("Please Choose selection for meals, carb and protein ");\
       let warning = document.getElementById("warning1");
       warning.classList.remove("hidden");
@@ -45,15 +46,16 @@ export default function CreateSub(){
     }
   };
   return (
-    <div className="p-4">
+    <div className="m-0 p-0">
+    <Sidebar/>
       <h1 className="text-3xl my-4">Create Sub</h1>
       {loading ? <Spinner /> : ""}
-      <div className="justify-center items-center text-red-900 text-3xl mb-9 hidden flex" id="warning1">
+      <div className="justify-center items-center text-red-500 text-3xl mb-9 hidden flex" id="warning1">
         تاكد من انك قمت بادخال جميع البيانات المطلوبة
       </div>
-      <div className="flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto">
+      <div className="flex flex-col border-[3px] border-black rounded-xl w-[600px] p-4 mx-auto">
         <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Name</label>
+          <label className="text-2xl mr-4 text-gray-700">Name</label>
           <input
             type="text"
             value={subname}
@@ -63,7 +65,7 @@ export default function CreateSub(){
         </div>
 
         <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Phone</label>
+          <label className="text-2xl mr-4 text-black font-sans">Phone Number</label>
           <input
             type="text"
             value={phone}
@@ -72,9 +74,9 @@ export default function CreateSub(){
           />
         </div>
 
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Meals</label>
-          <select name="meals" onChange={(e) => setmeals(e.target.value)}>
+        <div className="my-4 flex flex-col">
+          <label className="text-2xl mr-4 text-gray-700">Meals</label>
+          <select name="meals" onChange={(e) => setmeals(e.target.value)} className="w-full border-[2px] border-black rounded-sm text-xl">
             <option value="0">Please Select</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -83,9 +85,9 @@ export default function CreateSub(){
           </select>
         </div>
 
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Carb</label>
-          <select name="carb" onChange={(e) => setCarb(e.target.value)}>
+        <div className="my-4 flex flex-col">
+          <label className="text-2xl mr-4 text-gray-700">Carb</label>
+          <select name="carb" onChange={(e) => setCarb(e.target.value)} className="w-full border-[2px] border-black rounded-sm text-xl">
             <option value="0">Please Select</option>
             <option value="100">100</option>
             <option value="150">150</option>
@@ -94,9 +96,9 @@ export default function CreateSub(){
           </select>
         </div>
 
-        <div className="my-4">
-          <label className="text-xl mr-4 text-gray-500">Protein</label>
-          <select name="protein" onChange={(e) => setProtein(e.target.value)}>
+        <div className="my-4 flex flex-col">
+          <label className="text-2xl mr-4 text-gray-700">Protein</label>
+          <select name="protein" onChange={(e) => setProtein(e.target.value)} className="w-full border-[2px] border-black rounded-sm text-xl">
             <option value="0">Please Select</option>
             <option value="100">100</option>
             <option value="150">150</option>
@@ -104,7 +106,7 @@ export default function CreateSub(){
             <option value="250">250</option>
           </select>
         </div>
-        <button className="p-2 bg-sky-300 m-8" onClick={handleSaveSub}>
+        <button className="p-2 bg-[#2F4050] m-8 text-white text-2xl rounded-[10px]" onClick={handleSaveSub}>
           Save
         </button>
       </div>

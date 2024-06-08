@@ -52,16 +52,16 @@ export default function Dashboard() {
         <div className="w-full flex gap-[40px] justify-around max-md:flex-col max-md:justify-center max-md:items-center">
           <Link
             to={"/home"}
-            className="size-[300px] border-[2px] border-black  rounded-lg"
+            className="size-[300px] border-[2px] border-black  rounded-lg hover:bg-gray-200"
           >
-            <div  className="text-center flex flex-col text-3xl w-full">
+            <div  className="text-center flex flex-col text-3xl w-full ">
               <span className="mt-[70px]">مجموع المشتركين</span>
               <span>{totalSub}</span>
             </div>
           </Link>
           <Link
             to={"/meals"}
-            className="size-[300px] rounded-lg border-[2px] border-black"
+            className="size-[300px] rounded-lg border-[2px] border-black hover:bg-gray-200"
           >
             <div className="flex flex-col justify-start items-center text-3xl gap-4">
               <span className="mt-6"> مجموع الوجبات</span>
