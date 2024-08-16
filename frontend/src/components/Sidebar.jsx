@@ -2,6 +2,8 @@ import React from 'react'
 import { FaHouse } from "react-icons/fa6"
 import { FaRightToBracket } from "react-icons/fa6"
 import { FaBuilding } from "react-icons/fa6";
+import Hamburger from 'hamburger-react'
+
 
 const SidebarData=[
   {
@@ -22,10 +24,12 @@ const SidebarData=[
     },
 ]
 export default function Sidebar() {
+
   let x=""
   let y=""
   return (
-    <div className='min-h-screen w-[250px] bg-[#2F4050] min-w-[150px] fixed max-sm:w-[150px] max-md:w-[200px]'>
+    <div className='min-h-screen w-[250px] bg-[#2F4050] min-w-[150px] fixed max-md:hidden'>
+   
       <ul className="w-full h-auto list-none">
       {SidebarData.map((val,key)=>{
         {if(window.location.pathname == val.link){
@@ -46,6 +50,7 @@ export default function Sidebar() {
         )
       })}
       </ul>
+      
     </div>
   )
 }

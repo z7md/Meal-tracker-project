@@ -6,6 +6,7 @@ import Spinner from "../components/Spinner";
 import moment from "moment";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import Hamburger1 from "../components/Hamburger1";
 
 const ShowSub = () => {
   let currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
@@ -28,8 +29,9 @@ const ShowSub = () => {
   let arr = sub.mealTime;
   return (
   <div className="flex">
+  <Hamburger1/>
   <Sidebar/>
-    <div className="p-4 w-full flex flex-col bg-white  text-black justify-center items-center">
+    <div className="lg:p-4 w-full flex flex-col bg-white  text-black justify-center items-center">
       
       <div className="flex w-full justify-center items-center"></div>
       <h1 className="text-[32px] my-4">Subscriper Profile</h1>
@@ -38,7 +40,7 @@ const ShowSub = () => {
         <Spinner />
       ) : (
         
-        <div className="flex flex-col w-[600px] bg-[#293846] justify-center rounded-lg text-2xl text-white">
+        <div className="flex flex-col lg:w-[600px] w-[450px] sm:ml-[150px] bg-[#293846] justify-center rounded-lg text-2xl text-white">
           <div className="flex p-4  rounded-full  max-xl:items-end">
             <span>Name :  { }</span>
             <span>{sub.subname}</span>
@@ -71,7 +73,7 @@ const ShowSub = () => {
         </div>
       )}
       <Header sub={id}/>
-      <div className="flex flex-col  reounded-xl justify-center p-4 w-[600px]">
+      <div className="flex flex-col  reounded-xl justify-center p-4 lg:w-[600px] w-[400px]">
         <span className="text-4xl mr-4 text-white flex justify-center">
           Meals time
         </span>

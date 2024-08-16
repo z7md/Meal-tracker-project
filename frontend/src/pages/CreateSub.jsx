@@ -4,6 +4,7 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import Hamburger1 from "../components/Hamburger1";
 
 export default function CreateSub(){
   const { id } = useParams();
@@ -46,13 +47,14 @@ export default function CreateSub(){
   };
   return (
     <div className="m-0 p-0">
+    <Hamburger1/>
     <Sidebar/>
       <h1 className="text-3xl my-4">Create Sub</h1>
       {loading ? <Spinner /> : ""}
       <div className="justify-center items-center text-red-500 text-3xl mb-9 hidden flex" id="warning1">
         تاكد من انك قمت بادخال جميع البيانات المطلوبة
       </div>
-      <div className="flex flex-col border-[3px] border-black rounded-xl w-[600px] p-4 mx-auto">
+      <div className="flex flex-col border-[3px] border-black rounded-xl w-[400px] md:w-[600px] p-4 mx-auto">
         <div className="my-4">
           <label className="text-2xl mr-4 text-gray-700">Name</label>
           <input

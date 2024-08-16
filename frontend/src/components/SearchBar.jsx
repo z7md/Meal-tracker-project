@@ -6,7 +6,9 @@ import { MdOutlineAddBox } from "react-icons/md";
 import { AiOutlineLogout } from "react-icons/ai";
 
 
+
 export default function SearchBar(props) {
+
   let nave=useNavigate();
   let user = JSON.parse(localStorage.getItem("user"));
   user=user._id;
@@ -27,13 +29,15 @@ export default function SearchBar(props) {
       });
   };
   const handleChange = (value) => {
+
     setInput(value);
     fetchData(value);
   };
   return (
-    <div className="flex w-auto">
-      <div className="w-[70%] m-auto flex flex-col items-center max-xl:ml-[250px]">
-        <div className="bg-white w-full rounded-[10px] h-[2.5rem] flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] p-2 max-md:rounded-md">
+    <div className="flex w-full">
+
+      <div className="w-[70%]  m-auto flex  items-center max-xl:ml-[300px] max-2xl:ml-[260px]">
+        <div className="bg-white w-full rounded-[10px] h-[2.5rem] flex items-center shadow-[0_0_8px_rgba(0,0,0,0.3)] p-2 max-md:rounded-md justify-start">
           <FaSearch className="" />
           <input
             placeholder="Type to search..."

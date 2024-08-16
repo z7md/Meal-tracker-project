@@ -4,6 +4,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import Hamburger1 from "../components/Hamburger1";
 
 export default function Dashboard() {
   let nave = useNavigate();
@@ -45,11 +46,12 @@ export default function Dashboard() {
 
   return (
     <div className="flex">
+    <Hamburger1/>
       <Sidebar />
       
       <div className="w-full">
       <span className="flex items-center justify-center text-3xl p-12">مرحبا</span>
-        <div className="w-full flex gap-[40px] justify-around max-md:flex-col max-md:justify-center max-md:items-center">
+        <div className="w-full flex gap-[40px]  flex-col justify-center    items-center">
           <Link
             to={"/home"}
             className="size-[300px] border-[2px] border-black  rounded-lg hover:bg-gray-200"

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import moment from "moment";
 import SearchBar from "../components/SearchBar";
 import Sidebar from "../components/Sidebar";
+import Hamburger1 from "../components/Hamburger1";
 
 export const Context = React.createContext();
 const catagories = ["No", "Phone Number", "Name", "Meals", "Carb", "Protein"];
@@ -37,11 +38,14 @@ export default function Home() {
   }, []);
   return (
     <div className="flex">
+    <Hamburger1/>
       <Sidebar />
       <div className="p-4 w-full">
       <div className="flex flex-col">
+      <div>
         <SearchBar setResult={setResult} />
-        <div className="w-auto ml-[250px] max-sm:ml-[150px] max-md:ml-[200px]">   
+        </div>
+        <div className="w-auto md:ml-[250px]">   
         <h1 className="text-4xl my-8 flex justify-center w-full">
           قائمة المشتركين
         </h1>
@@ -52,7 +56,7 @@ export default function Home() {
             <div className="flex flex-col justify-around items-center w-full">
               <div className="flex w-full justify-around text-2xl bg-black">
                 {catagories.forEach((cat) => {
-                  <span className="border border-slate-700 rounded-md text-center text-black w-[150px] p-2">
+                  <span className="border border-slate-700 text-center text-black w-[150px] p-2">
                     {cat}
                   </span>;
                 })}
@@ -63,28 +67,28 @@ export default function Home() {
                   to={`/subs/details/${sub._id}`}
                   className={`${
                     isExperied(sub) ? "bg-gray-500" : ""
-                  } flex-1 hover:opacity-70 hover:bg-gray-200 w-full rounded-md`}
+                  } flex-1 hover:opacity-70 hover:bg-gray-200 w-full`}
                 >
                   <div
                     key={sub.key}
                     className="flex w-full justify-around text-2xl mt-2 "
                   >
-                    <span className="border border-slate-700 rounded-md text-center w-[275px] p-2 max-md:hidden max-h-[50px]">
+                    <span className="border-2 border-slate-700  text-center w-[275px] p-2 max-md:hidden max-h-[50px]">
                       {index + 1}
                     </span>
-                    <span className="border border-slate-700 rounded-md text-center w-[275px] p-2 max-h-[50px]">
+                    <span className="border-2 border-slate-700 text-center w-[275px] p-2 max-h-[50px]">
                       {sub.phone}
                     </span>
-                    <span className="border border-slate-700 rounded-md text-center w-[275px] p-2 max-h-[50px] min-w-[150px]">
+                    <span className="border-2 border-slate-700 text-center w-[275px] p-2 max-h-[50px] min-w-[150px]">
                       {sub.subname}
                     </span>
-                    <span className="border border-slate-700 rounded-md text-center w-[275px] p-2 max-md:hidden max-h-[50px]">
+                    <span className="border-2 border-slate-700  text-center w-[275px] p-2 max-md:hidden max-h-[50px]">
                       {sub.meals}
                     </span>
-                    <span className="border border-slate-700 rounded-md text-center w-[275px] p-2 max-md:hidden max-h-[50px]">
+                    <span className="border-2 border-slate-700  text-center w-[275px] p-2 max-md:hidden max-h-[50px]">
                       {sub.carb}
                     </span>
-                    <span className="border border-slate-700 rounded-md text-center w-[275px] p-2 max-md:hidden max-h-[50px]">
+                    <span className="border-2 border-slate-700  text-center w-[275px] p-2 max-md:hidden max-h-[50px]">
                       {sub.protein}
                     </span>
                   </div>

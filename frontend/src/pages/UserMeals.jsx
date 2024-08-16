@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from '../components/Sidebar';
 import axios from "axios";
 import Spinner from "../components/Spinner";
+import Hamburger1 from "../components/Hamburger1";
 
 export default function UserMeals() {
     let user = JSON.parse(localStorage.getItem("user"));
@@ -23,9 +24,10 @@ export default function UserMeals() {
     }, []);
   return (
     <div className="flex">
+    <Hamburger1/>
         <Sidebar/>
         <div className="w-full">
-        <div className="flex flex-col  reounded-xl justify-center p-4 w-[full] ml-[250px]">
+        <div className="flex flex-col  reounded-xl justify-center p-4 w-[full] md:ml-[250px]">
         { loading ? (
 
          <Spinner/>
